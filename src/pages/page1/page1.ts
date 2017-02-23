@@ -66,7 +66,6 @@ export class Page1 {
                             });
                         })
                         this.days = list;
-                        console.log('list:', list);
                         callback();
                     });
                 }
