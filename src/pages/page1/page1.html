@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <!--   <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button> -->
+        <!-- <ion-title>Page One</ion-title> -->
+        <ion-toolbar color="royal">
+            <ion-searchbar (search)="getItems($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+        </ion-toolbar>
+    </ion-navbar>
+</ion-header>
+<ion-content class="card-background-page">
+    <ion-card *ngIf="display">
+        <img *ngIf="weathers.weather[0].main == 'Rain'" src="./assets/moon.png" />
+        <img *ngIf="weathers.weather[0].main == 'Sun'" src="./assets/sun.png" />
+        <img *ngIf="weathers.weather[0].main == 'Clouds' || weathers.weather[0].main == 'Clear' || weathers.weather[0].main == 'Drizzle'" src="./assets/blood.png" />
+        <div class="card-temperature">{{weathers.name}},{{weathers.sys.country}}</div>
+        <div class="card-title">{{weathers.main.temp}}°C</div>
+        <div class="card-subtitle">{{weathers.weather[0].description}}</div>
+        <!-- <div class="card-subtitle">{{weathers.country}}</div> -->
+    </ion-card>
+    <ion-scroll scrollX="true" class="item presHolder" style="height: 30%" *ngIf="display">
+        <ion-row>
+            <ion-col width-25 *ngFor="let item of days" (click)="opendetail(item)">
+            <h3>{{item.date | uppercase}}</h3>
+            <img src="{{item.data.weather[0].icon}}">
+            <br>
+            <small>{{item.data.main.temp}}°C</small>
+            <!-- <small>{{item.weather[0].description}}</small> -->
+            </ion-col>
+        </ion-row>
+    </ion-scroll>
+    <!-- <h3>Ionic Menu Starter</h3>
+    <p>
+        If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
+    </p>
+    <button ion-button secondary menuToggle>Toggle Menu</button> -->
+</ion-content>
